@@ -3,8 +3,10 @@
   <parent>
     <groupId>com.sylvanaqua</groupId>
     <artifactId>farmhacker</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
+
+  <groupId>com.sylvanaqua</groupId>
   <artifactId>core-service</artifactId>
   <name>FarmHacker :: Core Service</name>
   <description>Core Service Classes</description>
@@ -13,7 +15,7 @@
   	<dependency>
 	   	<groupId>com.sylvanaqua</groupId>
 	   	<artifactId>database</artifactId>
-	   	<version>0.0.2-SNAPSHOT</version>
+	   	<version>0.0.3-SNAPSHOT</version>
     </dependency>
     <dependency>
 	    <groupId>org.mindrot</groupId>
