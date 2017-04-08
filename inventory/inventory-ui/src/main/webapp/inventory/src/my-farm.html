@@ -91,7 +91,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <farm-inventory name="farm-inventory"></farm-inventory>
+          <farm-inventory name="farm-inventory" selected-inventory-id={{inventoryId}}></farm-inventory>
+          <inventory-edit name="inventory-edit" catalog-id={{inventoryId}}></inventory-edit>
           <my-view2 name="view2"></my-view2>
           <my-view3 name="view3"></my-view3>
           <my-view404 name="view404"></my-view404>
@@ -110,6 +111,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           observer: '_pageChanged',
         },
+
+        inventoryId: {
+          type: String,
+          notify: true,
+          observer: '_inventoryIdChanged'
+        }
       },
 
       observers: [
@@ -128,6 +135,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
+      },
+
+      _inventoryIdChanged: function(inventoryId){
+        if(inventoryId){
+          this.set('routeData.page', 'inventory-edit');
+        }
       },
 
       _showPage404: function() {

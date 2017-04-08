@@ -95,7 +95,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <table style="width:100%">
                       <tr>
                         <td style="width:40%; padding-left:15px">
-                            <strong>{{item.name}}&nbsp; </strong><span style="font-size:0.85em; color:#a7a7a7">{{item.unitsAvailable}}&nbsp;units&nbsp;available</span>
+                            <strong>{{item.name}}&nbsp; </strong>
+                            <a href="#" id={{getInventoryDetailButtonId(item.id)}} style="font-size:0.85em; color:#a7a7a7" on-click="selectInventoryDetail">
+                              {{item.unitsAvailable}}&nbsp;units&nbsp;available
+                            </a>
                             <br />
                             <span style="color:#000000; font-size: 0.8em">{{item.category}}</span>
                         </td>
@@ -165,9 +168,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           catalogItemRetailPrice: '',
           catalogItemWholesalePrice: '',
           inventoryMeasure: '',
+
           inventoryCode: {
             value: '',
             reflectToAttribute: true
+          },
+
+          selectedInventoryId: {
+            value: '',
+            notify: true
           }
       },
 
@@ -270,6 +279,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
       },
+
+      selectInventoryDetail: function(e) {
+        var inventoryId = e.currentTarget.id.substring(16);
+        this.selectedInventoryId = inventoryId;
+      },
       
       clearEntryForm: function() {
          this.$.catalogItemForm.reset();
@@ -318,6 +332,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       getCatalogEditButtonId: function(categoryId){
         return "edit_" + categoryId;
+      },
+      getInventoryDetailButtonId: function(inventoryId){
+        return "inventoryDetail_" + inventoryId;
       },
 
       //-------------------------------------------------------------------------
